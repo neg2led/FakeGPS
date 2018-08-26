@@ -29,8 +29,8 @@ Timezone myTZ(myDST, mySTD);
 
 void setup()
 {
-	pinMode(BUILTIN_LED, OUTPUT);   // Initialize the BUILTIN_LED pin as an output
-	digitalWrite(BUILTIN_LED, HIGH);
+	pinMode(LED_BUILTIN, OUTPUT);   // Initialize the LED_BUILTIN pin as an output
+	digitalWrite(LED_BUILTIN, HIGH);
 	Serial.begin(115200);
 
 	wifiManager.setTimeout(180);
@@ -76,7 +76,7 @@ void loop()
 
 			if ((!second(loctime)) || firstrun)			// full minute or first cycle
 			{
-				digitalWrite(BUILTIN_LED, HIGH);		// blink for sync
+				digitalWrite(LED_BUILTIN, HIGH);		// blink for sync
 				sprintf(tstr, "$GPRMC,%02d%02d%02d,A,0000.0000,N,00000.0000,E,0.0,0.0,%02d%02d%02d,0.0,E,S",
 						hour(loctime), minute(loctime), second(loctime), day(loctime), month(loctime), year(loctime) - 2000);
 				cs = 0;
@@ -86,14 +86,14 @@ void loop()
 				Serial.println(tstr);					// send to console
 				Serial1.println(tstr);					// send to clock
 				delay(100);
-				digitalWrite(BUILTIN_LED, LOW);
+				digitalWrite(LED_BUILTIN, LOW);
 				delay(58000 - ((micros() - amicros) / 1000) - (second(loctime) * 1000)); // wait for end of minute
 				firstrun = 0;
 			}
 		}
 		delay(200);
 		if (((amicros - umicros) / 1000000L) > 3600)	// if no sync for more than one hour
-			digitalWrite(BUILTIN_LED, HIGH);			// switch off LED
+			digitalWrite(LED_BUILTIN, HIGH);			// switch off LED
 	}
 }
 
