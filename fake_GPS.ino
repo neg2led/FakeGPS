@@ -22,9 +22,9 @@ int firstrun = 1;
 
 // configure your timezone rules here how described on https://github.com/JChristensen/Timezone
 TimeChangeRule myDST =
-{ "CEST", Last, Sun, Mar, 2, +120 };    //Daylight time = UTC + 2 hours
+{ "NZDT", Last, Sun, Sep, 2, +780 };    //Daylight time = UTC + 13 hours
 TimeChangeRule mySTD =
-{ "CET", Last, Sun, Oct, 2, +60 };      //Standard time = UTC + 1 hours
+{ "NZST", First, Sun, Apr, 2, +720 };      //Standard time = UTC + 12 hours
 Timezone myTZ(myDST, mySTD);
 
 void setup()
